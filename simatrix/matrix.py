@@ -1,4 +1,4 @@
-
+# This is the main matrix generator module with a few helper functions
 
 def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> list:
     """
@@ -32,8 +32,7 @@ def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> li
         return matrix
 
 
-# FURTHER DEVELOPMENT
-# Display matrix content - to be developed
+# Display matrix content - to be developed in graphical environment
 def display_matrix(matrix: list):
     if type(matrix) is not list:
         raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
@@ -45,5 +44,32 @@ def display_matrix(matrix: list):
 
 
 # Display shape/info function
+def size(matrix: list):
+    """
+    Prints size of a matrix.
+    :param matrix:
+    :return:
+    """
+    if type(matrix) is not list:
+        raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
+    try:
+        print(f"--------------\n"
+              f"Dimensions: {len(matrix)} \nRows: {len(matrix[0])} \nColumns: {len(matrix[0][0])}"
+              f"\n--------------\n")
 
-# Clear matrix values function
+    except TypeError as e:
+        print(e)
+
+    else:
+        pass  # maybe not needed
+
+
+a = simple_matrix(1, 15, 2)
+b = [[2.1], [0.2]]
+size(b)
+
+# Reset matrix values function
+
+
+if __name__ == "__main__":
+    print("Running at base level")
