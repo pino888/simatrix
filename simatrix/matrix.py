@@ -1,9 +1,12 @@
 # This is the main matrix generator module with a few helper functions
 from core import Matrix
 
-popo = Matrix(3, 2, 3)
+popo = Matrix(3, 2, 3, 9.11)
 
-print(popo[0][0][0])
+print(popo)
+popo.show_info()
+popo.reset()
+print(popo)
 popo.show_info()
 
 
