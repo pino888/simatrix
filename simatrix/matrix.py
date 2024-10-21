@@ -1,4 +1,11 @@
 # This is the main matrix generator module with a few helper functions
+from core import Matrix
+
+popo = Matrix(3, 2, 3)
+
+print(popo[0][0][0])
+popo.show_info()
+
 
 def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> list:
     """
@@ -32,7 +39,7 @@ def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> li
         return matrix
 
 
-# Display matrix content - to be developed in graphical environment
+# Display matrix content - to be developed in a graphical environment
 def display_matrix(matrix: list):
     if type(matrix) is not list:
         raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
@@ -43,13 +50,14 @@ def display_matrix(matrix: list):
         print("\n")
 
 
-# Display shape/info function
-def size(matrix: list):
+# Display size/info function
+def show_info(matrix: list):
     """
     Prints size of a matrix.
     :param matrix:
-    :return:
+    :return: Info about each parameter of given matrix
     """
+    # review error handling and run tests
     if type(matrix) is not list:
         raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
     try:
@@ -57,19 +65,22 @@ def size(matrix: list):
               f"Dimensions: {len(matrix)} \nRows: {len(matrix[0])} \nColumns: {len(matrix[0][0])}"
               f"\n--------------\n")
 
-    except TypeError as e:
-        print(e)
-
-    else:
-        pass  # maybe not needed
+    except TypeError:
+        raise TypeError(f"Provided matrix does not meet the criteria, make sure it has 3 levels")
 
 
-a = simple_matrix(1, 15, 2)
+a = simple_matrix(1, 5, 4, 8)
 b = [[2.1], [0.2]]
-size(b)
+#display_matrix(a)
+
 
 # Reset matrix values function
+def reset_values(matrix: list):
+    matrix[:] = [[[0 for _ in range(len(matrix[0][0]))] for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
 
+
+reset_values(a)
+#display_matrix(a)
 
 if __name__ == "__main__":
     print("Running at base level")
