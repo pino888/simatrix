@@ -21,10 +21,10 @@ class Matrix(list):
 
     Methods
     -------
-    show_info()
+    inspect()
         Prints the size of the matrix
     display()
-        Prints
+        Prints each dimension and its content
     zero()
         Replaces all the values with zeros
     set_values()
@@ -39,7 +39,6 @@ class Matrix(list):
 
     def __init__(self, dims: int, rows: int, cols: int, value: int | float = 0):
         # Validate the input and raise an error if incorrect
-        # TODO: review error handling and run tests
         for dimension in [dims, rows, cols]:
             if type(dimension) is not int:
                 raise TypeError(f"Dimensional parameter type of {type(dimension)} is invalid, must be {int}")
@@ -55,35 +54,51 @@ class Matrix(list):
         except ValueError as err:
             print(err)
         else:
-            print("Matrix objected created")
-        self.dims = dims
-        self.rows = rows
-        self.cols = cols
-        self.value = value
+            print("Matrix objected has been created")
+            self._dims = dims
+            self._rows = rows
+            self._cols = cols
+            self._value = value
 
-    def show_info(self):
+    def inspect(self):
         """
         Prints the size and index levels of a matrix.
         """
+
         # TODO: more info to be listed
-        print(f"--------------\nDimensions: {self.dims} \nRows: {self.rows} \nColumns: {self.cols}\n--------------\n")
+        print(f"--------------\nDimensions: {self._dims} \n"
+              f"Rows: {self._rows} \n"
+              f"Columns: {self._cols}\n"
+              f"Total number of cells: {self._dims*self._rows*self._cols}\n"
+              f"--------------\n")
 
     # TODO: Develop a graphical environment
-    def display(self):
-        for index, value in enumerate(self):
-            print(f"Dimension index {index}")
-            for row in value:
-                print(row)
-            print("\n")
+    def display(self, dim: int = None):
+        """Display dimension of a given index. If no index is specified, all dimensions are displayed"""
+
+        if dim:
+            print(f"Dimension index {dim}")
+            for index, value in enumerate(self[dim]):
+
+                print(value)
+
+        else:
+            for index, value in enumerate(self):
+                print(f"Dimension index {index}")
+                for row in value:
+                    print(row)
+                print("\n")
 
     def zero(self):
         """Set all values to 0"""
+
         for dim in self:
             for row in dim:
                 row[:] = [0] * len(row)
 
     def set_values(self, value: int | float):
-        """Set all values to a given integer or float"""
+        """Set all values to a given integer or a float"""
+
         if type(value) is not int and type(value) is not float:
             raise TypeError(f"Value parameter type of {type(value)} is invalid, must be {int} or {float}")
         for dim in self:

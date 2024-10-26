@@ -1,9 +1,15 @@
 # This is the main matrix generator module with a few helper functions
 from matrix import Matrix
+from datetime import datetime as dt
 
-popo = Matrix(3, 2, 3, 9)
 
-popo.show_info()
+today = dt.today()
+print(today)
+
+temperatures = Matrix(12, 24, 31)
+
+temperatures.inspect()
+
 
 
 def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> list:
@@ -37,49 +43,6 @@ def simple_matrix(dims: int, rows: int, cols: int, value: int | float = 0) -> li
     else:
         return matrix
 
-
-# Display matrix content
-# TODO: Develop a graphical environment
-def display_matrix(matrix: list):
-    if type(matrix) is not list:
-        raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
-    for index, value in enumerate(matrix):
-        print(f"Dimension index {index}")
-        for row in value:
-            print(row)
-        print("\n")
-
-
-def show_info(matrix: list):
-    """
-    Prints size of a matrix.
-    :param matrix:
-    :return: Info about each parameter of given matrix
-    """
-    # TODO: review error handling and run tests
-    if type(matrix) is not list:
-        raise TypeError(f"Provided matrix type of {type(matrix)} is invalid, must be {list}")
-    try:
-        print(f"--------------\n"
-              f"Dimensions: {len(matrix)} \nRows: {len(matrix[0])} \nColumns: {len(matrix[0][0])}"
-              f"\n--------------\n")
-
-    except TypeError:
-        raise TypeError(f"Provided matrix does not meet the criteria, make sure it has 3 levels")
-
-
-a = simple_matrix(1, 5, 4, 8)
-b = [[2.1], [0.2]]
-#display_matrix(a)
-
-
-# Reset matrix values function
-def reset_values(matrix: list):
-    matrix[:] = [[[0 for _ in range(len(matrix[0][0]))] for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
-
-
-reset_values(a)
-#display_matrix(a)
 
 if __name__ == "__main__":
     print("Running at base level")
